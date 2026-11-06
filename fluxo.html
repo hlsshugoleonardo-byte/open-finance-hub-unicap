@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fluxo · Open Finance Hub</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/fluxo.css">
+</head>
+<body class="pg-fluxo">
+
+  <div class="app">
+
+    
+    <div class="overlay" id="overlay" hidden></div>
+
+    
+    <aside class="sidebar" id="sidebar">
+      <p class="sidebar__logo">Open <span>Finance</span></p>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <ul class="menu__list">
+          <li><a href="inicio.html" class="menu__link">Início</a></li>
+          <li><a href="instituicoes.html" class="menu__link">Instituições</a></li>
+          <li><a href="extrato.html" class="menu__link">Extrato</a></li>
+          <li><a href="fluxo.html" class="menu__link is-active" aria-current="page">Fluxo</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="logout" id="btn-sair">Sair</button>
+    </aside>
+
+    
+    <div class="content">
+
+      
+      <header class="topbar">
+        <div class="topbar__left">
+          <button
+            type="button"
+            class="hamburger"
+            id="btn-menu"
+            aria-label="Abrir menu"
+            aria-controls="sidebar"
+            aria-expanded="false">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+          </button>
+          <h1 class="topbar__title">Fluxo<span class="topbar__extra"> de caixa</span></h1>
+        </div>
+
+        <div class="profile">
+          <span class="profile__avatar" aria-hidden="true">AS</span>
+          <div class="profile__info">
+            <span class="profile__name">Ana Souza</span>
+            <span class="profile__email">ana@email.com</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="main" id="conteudo">
+
+        <div class="flx">
+
+          
+          <section class="flx-card flx-resumo" aria-labelledby="flx-rotulo">
+            <p class="flx-card__label" id="flx-rotulo">Saldo projetado em <span id="flx-mes">Mar/2027</span></p>
+            <p class="flx-card__total" id="flx-saldo">R$ 22.350,00</p>
+            <div class="flx-chart-wrap">
+              <svg class="flx-chart" id="flx-chart" viewBox="0 0 520 200" role="img" aria-label="Gráfico de linha da evolução do saldo projetado"></svg>
+            </div>
+            
+            <table class="sr-only" id="flx-tabela"></table>
+          </section>
+
+          
+          <section class="flx-card flx-rec" aria-labelledby="flx-rec-titulo">
+            <h2 class="flx-rec__title" id="flx-rec-titulo">Recorrentes considerados</h2>
+            <ul id="flx-rec-lista"></ul>
+          </section>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/layout.js"></script>
+  <script src="js/fluxo.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instituições · Open Finance Hub</title>
+
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/instituicoes.css">
+</head>
+<body>
+
+  <div class="app">
+
+    
+    <div class="overlay" id="overlay" hidden></div>
+
+    
+    <aside class="sidebar" id="sidebar">
+      <p class="sidebar__logo">Open <span>Finance</span></p>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <ul class="menu__list">
+          <li><a href="inicio.html" class="menu__link">Início</a></li>
+          
+          <li><a href="instituicoes.html" class="menu__link is-active" aria-current="page">Instituições</a></li>
+          <li><a href="extrato.html" class="menu__link">Extrato</a></li>
+          <li><a href="fluxo.html" class="menu__link">Fluxo</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="logout" id="btn-sair">Sair</button>
+    </aside>
+
+    
+    <div class="content">
+
+      
+      <header class="topbar">
+        <div class="topbar__left">
+          <button
+            type="button"
+            class="hamburger"
+            id="btn-menu"
+            aria-label="Abrir menu"
+            aria-controls="sidebar"
+            aria-expanded="false">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+          </button>
+          <h1 class="topbar__title">Instituições</h1>
+        </div>
+
+        <div class="profile">
+          <span class="profile__avatar" aria-hidden="true">AS</span>
+          <div class="profile__info">
+            <span class="profile__name">Ana Souza</span>
+            <span class="profile__email">ana@email.com</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="main" id="conteudo">
+
+        <p class="intro">Escolha quais instituições compartilham dados com o Hub.</p>
+
+        
+        <ul class="conn-list" id="lista-instituicoes">
+
+          
+          <li>
+            <article class="conn conn--on" data-nome="Nubank">
+              <div class="conn__top">
+                <span class="inst-logo inst-logo--nu" aria-hidden="true">Nu</span>
+                <div class="conn__info">
+                  <h2 class="conn__name">Nubank</h2>
+                  <p class="conn__desc">Dados compartilhados</p>
+                </div>
+                <span class="badge badge--on">Conectado</span>
+              </div>
+              <button type="button" class="conn__btn conn__btn--outline">Revogar acesso</button>
+            </article>
+          </li>
+
+          
+          <li>
+            <article class="conn conn--on" data-nome="Inter">
+              <div class="conn__top">
+                <span class="inst-logo inst-logo--in" aria-hidden="true">In</span>
+                <div class="conn__info">
+                  <h2 class="conn__name">Inter</h2>
+                  <p class="conn__desc">Dados compartilhados</p>
+                </div>
+                <span class="badge badge--on">Conectado</span>
+              </div>
+              <button type="button" class="conn__btn conn__btn--outline">Revogar acesso</button>
+            </article>
+          </li>
+
+          
+          <li>
+            <article class="conn conn--off" data-nome="Itaú">
+              <div class="conn__top">
+                <span class="inst-logo inst-logo--it" aria-hidden="true">It</span>
+                <div class="conn__info">
+                  <h2 class="conn__name">Itaú</h2>
+                  <p class="conn__desc">Sem compartilhamento</p>
+                </div>
+                <span class="badge badge--off">Desconectado</span>
+              </div>
+              <button type="button" class="conn__btn conn__btn--solid">Conectar</button>
+            </article>
+          </li>
+
+        </ul>
+
+       
+        <p class="sr-only" id="aviso-status" role="status" aria-live="polite"></p>
+
+      </main>
+    </div>
+  </div>
+
+
+<div class="modal hidden" id="modal-revogar">
+  <div
+    class="modal__box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-titulo"
+    aria-describedby="modal-texto">
+    <h2 class="modal__title" id="modal-titulo">Revogar acesso?</h2>
+    <p class="modal__text" id="modal-texto">
+      O Hub deixa de mostrar saldos e transações desta instituição. Você pode conectar de novo depois.
+    </p>
+
+    <div class="modal__actions">
+      <button type="button" class="modal__btn modal__btn--outline" id="modal-voltar">Voltar</button>
+      <button type="button" class="modal__btn modal__btn--danger" id="modal-confirmar">Revogar</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal hidden" id="modal-conectar">
+  <div
+    class="modal__box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-conectar-titulo">
+    <h2 class="modal__title" id="modal-conectar-titulo">Confirme os dados antes de conectar</h2>
+
+    
+      <ul class="modal__list">
+      <li class="modal__row">
+        <span class="modal__label">Instituição</span>
+        <span class="modal__value" id="modal-conectar-instituicao">Itaú</span>
+      </li>
+      <li class="modal__row">
+        <span class="modal__label">Titular</span>
+        <span class="modal__value">Ana Souza</span>
+      </li>
+      <li class="modal__row">
+        <span class="modal__label">Tipo</span>
+        <span class="modal__value">Conta corrente</span>
+      </li>
+      <li class="modal__row">
+        <span class="modal__label">Agência</span>
+        <span class="modal__value">1234</span>
+      </li>
+    </ul>
+
+    <p class="modal__info">
+      <span aria-hidden="true">&#9432;</span>
+      Ao confirmar, você autoriza o compartilhamento das informações.
+    </p>
+
+    <div class="modal__actions">
+      <button type="button" class="modal__btn modal__btn--outline" id="modal-conectar-voltar">Voltar</button>
+      <button type="button" class="modal__btn modal__btn--solid" id="modal-conectar-confirmar">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+  <script src="js/layout.js"></script>
+  <script src="js/instituicoes.js"></script>
+</body>
+</html>

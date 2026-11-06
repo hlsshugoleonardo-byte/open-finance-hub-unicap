@@ -1,0 +1,70 @@
+  :root {
+ 
+  --cor-pri:   rgba(30, 58, 138, 1);    
+  --cor-pri2:  rgba(228, 235, 251, 1);  
+  --cor-on:    rgba(255, 255, 255, 1);  
+  --cor-ok:    rgba(11, 138, 76, 1);    
+  --cor-okbg:  rgba(224, 244, 234, 1);  
+  --cor-bad:   rgba(198, 40, 40, 1);    
+  --cor-badbg: rgba(253, 234, 234, 1);  
+  --cor-wn:    rgba(154, 91, 0, 1);     
+  --cor-wnbg:  rgba(255, 241, 214, 1);  
+  --cor-bg:    rgba(233, 237, 244, 1);  
+  --cor-sf:    rgba(255, 255, 255, 1);  
+  --cor-tx:    rgba(15, 27, 45, 1);     
+  --cor-mu:    rgba(91, 107, 130, 1);   
+  --cor-ln:    rgba(219, 226, 236, 1);  
+
+ 
+  --font-28-extrabold: 800 28px/1.2 "Inter", sans-serif; 
+  --font-22-extrabold: 800 22px/1.2 "Inter", sans-serif; 
+  --font-16-extrabold: 800 16px/1.3 "Inter", sans-serif; 
+  --font-14-regular:   400 14px/1.4 "Inter", sans-serif; 
+  --font-12-semibold:  600 12px/1.4 "Inter", sans-serif; 
+  --font-12-regular:   400 12px/1.4 "Inter", sans-serif; 
+
+ 
+  --esp-4:  4px;
+  --esp-8:  8px;
+  --esp-12: 12px;
+  --esp-16: 16px;
+  --esp-24: 24px;
+
+ 
+  --raio-10: 10px; 
+  --raio-14: 14px; 
+  --raio-20: 20px; 
+}
+
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: var(--font-14-regular);
+  color: var(--cor-tx);
+  background: var(--cor-bg);
+}
+
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+
+button { font: inherit; cursor: pointer; }
+
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cor-pri);
+  outline-offset: 2px;
+  border-radius: var(--raio-10);
+}

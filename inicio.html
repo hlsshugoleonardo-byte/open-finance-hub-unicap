@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Início · Open Finance Hub</title>
+
+  <!-- Fonte Inter (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/inicio.css">
+</head>
+<body>
+
+  <div class="app">
+
+   
+    <div class="overlay" id="overlay" hidden></div>
+
+   
+    <aside class="sidebar" id="sidebar">
+      <p class="sidebar__logo">Open <span>Finance</span></p>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <ul class="menu__list">
+          <li><a href="inicio.html" class="menu__link is-active" aria-current="page">Início</a></li>
+          <li><a href="instituicoes.html" class="menu__link">Instituições</a></li>
+          <li><a href="extrato.html" class="menu__link">Extrato</a></li>
+          <li><a href="fluxo.html" class="menu__link">Fluxo</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="logout" id="btn-sair">Sair</button>
+    </aside>
+
+   
+    <div class="content">
+
+      
+      <header class="topbar">
+        <div class="topbar__left">
+        
+          <button
+            type="button"
+            class="hamburger"
+            id="btn-menu"
+            aria-label="Abrir menu"
+            aria-controls="sidebar"
+            aria-expanded="false">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+          </button>
+          <h1 class="topbar__title" id="titulo-tela">Início</h1>
+        </div>
+
+        <div class="profile">
+          <span class="profile__avatar" aria-hidden="true">AS</span>
+          <div class="profile__info">
+            <span class="profile__name">Ana Souza</span>
+            <span class="profile__email">ana@email.com</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="main" id="conteudo">
+
+       
+        <div class="summary">
+          <section class="card card--total" aria-labelledby="total-label">
+            <h2 class="card__label" id="total-label">Patrimônio total</h2>
+            <p class="card__total">R$ 48.320,75</p>
+          </section>
+
+          <section class="card card--chart" aria-labelledby="chart-label">
+            <h2 class="sr-only" id="chart-label">Composição do patrimônio</h2>
+
+         
+            <div
+              class="donut"
+              role="img"
+              aria-label="Gráfico de rosca: investimentos 71%, contas 23%, crédito 6%">
+            </div>
+
+         
+            <ul class="legend">
+              <li class="legend__item">
+                <span class="legend__dot legend__dot--pri" aria-hidden="true"></span>
+                <span class="legend__name">Investimentos</span>
+                <span class="legend__value">R$ 38.900,00</span>
+              </li>
+              <li class="legend__item">
+                <span class="legend__dot legend__dot--ok" aria-hidden="true"></span>
+                <span class="legend__name">Contas</span>
+                <span class="legend__value">R$ 12.450,30</span>
+              </li>
+              <li class="legend__item">
+                <span class="legend__dot legend__dot--bad" aria-hidden="true"></span>
+                <span class="legend__name">Crédito (fatura)</span>
+                <span class="legend__value">−R$ 3.029,55</span>
+              </li>
+            </ul>
+          </section>
+        </div>
+
+      
+        <section aria-labelledby="inst-titulo">
+          <h2 class="section-title" id="inst-titulo">Por instituição</h2>
+
+          <ul class="inst-list">
+            <li>
+              <article class="inst">
+                <span class="inst-logo inst-logo--nu" aria-hidden="true">Nu</span>
+                <div class="inst__info">
+                  <h3 class="inst__name">Nubank</h3>
+                  <p class="inst__desc">Conta + cartão</p>
+                </div>
+                <div class="inst__balance">
+                  <p class="inst__value">R$ 7.120,30</p>
+                  <p class="inst__desc">Conta</p>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="inst">
+                <span class="inst-logo inst-logo--in" aria-hidden="true">In</span>
+                <div class="inst__info">
+                  <h3 class="inst__name">Inter</h3>
+                  <p class="inst__desc">Investimentos</p>
+                </div>
+                <div class="inst__balance">
+                  <p class="inst__value">R$ 28.900,00</p>
+                  <p class="inst__desc">Investimento</p>
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="inst">
+                <span class="inst-logo inst-logo--it" aria-hidden="true">It</span>
+                <div class="inst__info">
+                  <h3 class="inst__name">Itaú</h3>
+                  <p class="inst__desc">Fatura do cartão</p>
+                </div>
+                <div class="inst__balance">
+                  <p class="inst__value">−R$ 3.029,55</p>
+                  <p class="inst__desc">Crédito</p>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/layout.js"></script>
+</body>
+</html>

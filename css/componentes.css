@@ -1,0 +1,17 @@
+
+
+
+.inst-logo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  font: var(--font-12-semibold);
+  font-weight: 800;
+  color: var(--cor-on);
+  border-radius: var(--raio-10);
+}
+.inst-logo--nu { background: rgba(130, 10, 209, 1); }
+.inst-logo--in { background: rgba(236, 108, 0, 1); }
+.inst-logo--it { background: rgba(10, 61, 145, 1); }

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Extrato · Open Finance Hub</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/extrato.css">
+</head>
+<body>
+
+  <div class="app">
+
+    
+    <div class="overlay" id="overlay" hidden></div>
+
+    
+    <aside class="sidebar" id="sidebar">
+      <p class="sidebar__logo">Open <span>Finance</span></p>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <ul class="menu__list">
+          <li><a href="inicio.html" class="menu__link">Início</a></li>
+          <li><a href="instituicoes.html" class="menu__link">Instituições</a></li>
+          <li><a href="extrato.html" class="menu__link is-active" aria-current="page">Extrato</a></li>
+          <li><a href="fluxo.html" class="menu__link">Fluxo</a></li>
+        </ul>
+      </nav>
+
+      <button type="button" class="logout" id="btn-sair">Sair</button>
+    </aside>
+
+   
+    <div class="content">
+
+      
+      <header class="topbar">
+        <div class="topbar__left">
+          <button
+            type="button"
+            class="hamburger"
+            id="btn-menu"
+            aria-label="Abrir menu"
+            aria-controls="sidebar"
+            aria-expanded="false">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+          </button>
+          <h1 class="topbar__title">Extrato</h1>
+        </div>
+
+        <div class="profile">
+          <span class="profile__avatar" aria-hidden="true">AS</span>
+          <div class="profile__info">
+            <span class="profile__name">Ana Souza</span>
+            <span class="profile__email">ana@email.com</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="main" id="conteudo">
+
+       
+        <form class="filtros" role="search" aria-label="Filtrar transações" onsubmit="return false">
+          <label class="sr-only" for="busca">Buscar transação</label>
+          <input class="filtros__campo filtros__busca" type="search" id="busca" placeholder="Buscar transação">
+
+          <label class="sr-only" for="instituicao">Instituição</label>
+          <select class="filtros__campo" id="instituicao">
+            <option value="">Instituição</option>
+            <option>Nubank</option>
+            <option>Inter</option>
+          </select>
+
+          <label class="sr-only" for="categoria">Categoria</label>
+          <select class="filtros__campo" id="categoria">
+            <option value="">Categoria</option>
+            <option>Alimentação</option>
+            <option>Receita</option>
+          </select>
+
+          <label class="sr-only" for="de">Período inicial (mês e ano)</label>
+          <input class="filtros__campo" type="month" id="de" aria-describedby="erro-datas">
+          <label class="sr-only" for="ate">Período final (mês e ano)</label>
+          <input class="filtros__campo" type="month" id="ate" aria-describedby="erro-datas">
+        </form>
+
+        
+        <p class="aviso-erro" id="erro-datas" role="alert" hidden></p>
+
+        
+        <section class="aplicados" id="aplicados" aria-label="Filtros aplicados" hidden>
+          <div>
+            <p class="aplicados__rotulo">Filtros aplicados:</p>
+            <ul class="chips" id="chips"></ul>
+          </div>
+          <button type="button" class="link-btn" id="limpar">Limpar filtros</button>
+        </section>
+
+        
+        <section class="tx" aria-label="Transações">
+          <div class="tx__scroll" id="tx-tabela">
+            <table class="tx__table">
+              <thead>
+                <tr>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Instituição</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Data</th>
+                  <th scope="col" class="tx__num">Valor</th>
+                </tr>
+              </thead>
+              <tbody id="tx-linhas"></tbody>
+            </table>
+          </div>
+          <div class="vazio" id="vazio" hidden>
+            <p class="vazio__titulo">Nenhuma transação encontrada</p>
+            <p class="vazio__texto" id="vazio-texto">Ajuste o período para ver resultados.</p>
+          </div>
+        </section>
+
+        <p class="total" aria-live="polite">
+          <span>Total</span>
+          <span id="total">R$ 0,00</span>
+        </p>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/layout.js"></script>
+  <script src="js/extrato.js"></script>
+</body>
+</html>

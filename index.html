@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar · Open Finance Hub</title>
+
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  
+  <main class="login">
+
+ 
+    <section class="login__brand" aria-labelledby="brand-title">
+      <h1 id="brand-title" class="login__brand-title">Open Finance Hub</h1>
+      <p class="login__brand-text">
+        Reúna suas contas, cartões e investimentos em um só lugar, com filtros inteligentes, informações contextualizadas e confirmações claras em cada etapa.
+      </p>
+    </section>
+
+
+    <section class="login__panel" aria-labelledby="form-title">
+      <div class="login__box">
+        <h2 id="form-title" class="login__title">Acesse sua conta</h2>
+
+        <form id="login-form" novalidate>
+
+        
+          <div class="field">
+            <label for="usuario" class="field__label">CPF ou e-mail</label>
+            <input
+              type="text"
+              id="usuario"
+              name="usuario"
+              class="field__input"
+              placeholder="Digite seu CPF ou e-mail"
+              autocomplete="username"
+              required>
+          </div>
+
+
+          <div class="field">
+            <label for="senha" class="field__label">Senha</label>
+            <div class="field__password">
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                class="field__input field__input--password"
+                placeholder="Crie uma senha"
+                autocomplete="current-password"
+                aria-describedby="regras-senha"
+                required>
+              <button
+                type="button"
+                id="toggle-senha"
+                class="field__toggle"
+                aria-label="Mostrar senha"
+                aria-controls="senha">Mostrar</button>
+            </div>
+          </div>
+
+          
+          <ul id="regras-senha" class="rules" aria-label="Requisitos da senha">
+            <li class="rules__item" data-regra="tamanho">
+              <span class="rules__icon" aria-hidden="true">×</span>
+              <span>Mínimo de 8 caracteres</span>
+              <span class="sr-only rules__status">(pendente)</span>
+            </li>
+            <li class="rules__item" data-regra="maiuscula">
+              <span class="rules__icon" aria-hidden="true">×</span>
+              <span>Uma letra maiúscula</span>
+              <span class="sr-only rules__status">(pendente)</span>
+            </li>
+            <li class="rules__item" data-regra="numero">
+              <span class="rules__icon" aria-hidden="true">×</span>
+              <span>Um número</span>
+              <span class="sr-only rules__status">(pendente)</span>
+            </li>
+            <li class="rules__item" data-regra="simbolo">
+              <span class="rules__icon" aria-hidden="true">×</span>
+              <span>Um símbolo (!@#$)</span>
+              <span class="sr-only rules__status">(pendente)</span>
+            </li>
+          </ul>
+
+          
+          <div class="check">
+            <input type="checkbox" id="manter" name="manter" class="check__input">
+            <label for="manter" class="check__label">Manter conectado</label>
+          </div>
+
+          <button type="submit" class="btn">Entrar</button>
+
+          
+          <div class="links">
+            <a href="#" class="links__item">Esqueci a senha</a>
+            <a href="#" class="links__item">Criar conta</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
