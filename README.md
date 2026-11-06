@@ -2,7 +2,9 @@
 
 Protótipo front-end de um hub financeiro baseado em Open Finance: reúne contas, cartões e investimentos de várias instituições em um só lugar, com filtros, contexto e confirmações claras a cada ação.
 
-**Demo:** https://tainagrunberg.github.io/open-finance-hub-project/
+**Demo:** https://open-finance-hub-unicap.onrender.com
+
+**Repositório:** https://github.com/hlsshugoleonardo-byte/open-finance-hub-unicap
 
 > Projeto estático feito só com HTML, CSS e JavaScript puro. Todos os dados exibidos são fictícios e não há back-end nem autenticação real.
 
@@ -100,8 +102,8 @@ Layout adaptado para telas menores (breakpoint em 900px nas telas internas e 800
 Não precisa instalar nada. Basta clonar e abrir no navegador:
 
 ```bash
-git clone https://github.com/tainagrunberg/open-finance-hub-project.git
-cd open-finance-hub-project
+git clone https://github.com/hlsshugoleonardo-byte/open-finance-hub-unicap.git
+cd open-finance-hub-unicap
 ```
 
 Abra o `index.html` no navegador (duplo clique) ou sirva a pasta com qualquer servidor estático, por exemplo:
