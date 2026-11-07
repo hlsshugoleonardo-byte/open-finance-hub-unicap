@@ -1,0 +1,56 @@
+/* Modais compartilhados (revogar/conectar acesso, Meu cadastro) */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 27, 45, 0.6);
+}
+.modal.hidden { display: none; }
+
+.modal__box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-16);
+  width: 90%;
+  max-width: 400px;
+  padding: var(--esp-24);
+  text-align: left;
+  background: var(--cor-sf);
+  border-radius: var(--raio-20);
+}
+
+/* Modal de alerta (revogar): faixa vermelha no topo e ícone de aviso */
+.modal__box--alerta { border-top: 8px solid var(--cor-bad-btn); }
+.modal__head { display: flex; align-items: center; gap: var(--esp-12); }
+.modal__icon { flex: none; width: 32px; height: 32px; color: var(--cor-bad-btn); }
+.modal__box--alerta .modal__title { color: var(--cor-bad); }
+
+.modal__title { font-size: 18px; font-weight: 800; color: var(--cor-tx); }
+.modal__text { font-size: 13px; font-weight: 400; line-height: 1.5; color: var(--cor-mu); }
+
+.modal__actions { display: flex; gap: var(--esp-16); margin-top: var(--esp-8); }
+.modal__btn {
+  flex: 1;
+  padding: var(--esp-12);
+  font-weight: 600;
+  border-radius: var(--raio-10);
+  cursor: pointer;
+}
+.modal__btn--outline { background: transparent; border: 1px solid var(--cor-pri); color: var(--cor-pri); }
+.modal__btn--danger  { background: var(--cor-bad-btn); border: none; color: #fff; }
+.modal__btn--solid   { background: var(--cor-btn); border: none; color: var(--cor-on); }
+
+.modal__row { display: flex; justify-content: space-between; margin-bottom: var(--esp-8); font-size: 14px; }
+.modal__label { font-weight: 400; color: var(--cor-mu); }
+.modal__value { font-weight: 600; color: var(--cor-tx); }
+
+.modal__info {
+  padding: var(--esp-12);
+  font-size: 12px;
+  color: var(--cor-pri);
+  background-color: var(--cor-pri2);
+  border-radius: var(--raio-10);
+}

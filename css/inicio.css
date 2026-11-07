@@ -19,27 +19,22 @@
 
 
 .card--chart {
+  padding: var(--esp-16) var(--esp-24) var(--esp-16) 20px;
+}
+.card__titulo { margin-bottom: var(--esp-12); font: var(--font-14-regular); font-weight: 800; }
+.card__corpo {
   display: flex;
   align-items: center;
   gap: var(--esp-16);
-  padding: var(--esp-16) var(--esp-24) var(--esp-16) 20px;
 }
 
 
-.donut {
-  flex: none;
-  width: 110px;
-  height: 110px;
-  background: conic-gradient(
-    var(--cor-pri) 0 71.5%,
-    var(--cor-ok)  71.5% 94.4%,
-    var(--cor-bad) 94.4% 100%
-  );
-  border-radius: 50%;
+.donut-wrap { position: relative; flex: none; width: 110px; height: 110px; }
+.donut-wrap[hidden] { display: none; }
+.donut-vazio { flex: none; width: 110px; font: var(--font-12-regular); color: var(--cor-mu); }
+.donut-vazio[hidden] { display: none; }
 
-  -webkit-mask: radial-gradient(circle, transparent 32px, #000 33px);
-          mask: radial-gradient(circle, transparent 32px, #000 33px);
-}
+.card__note { margin-top: var(--esp-8); font: var(--font-12-regular); color: var(--cor-mu); }
 
 
 .legend { display: grid; gap: var(--esp-8); }
@@ -58,6 +53,8 @@
 
 .legend__name  { font: var(--font-14-regular); font-size: 13px; color: var(--cor-pri); }
 .legend__value { font: var(--font-14-regular); font-weight: 700; }
+.legend__item.is-off .legend__name { color: var(--cor-mu); }
+.legend__off { font-weight: 400; font-size: 12px; color: var(--cor-mu); }
 
 
 .section-title { margin-bottom: var(--esp-24); font: var(--font-16-extrabold); }
@@ -65,7 +62,7 @@
 
 .inst-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 430px));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: var(--esp-24) var(--esp-24);
 }
 
@@ -85,6 +82,9 @@
 
 
 .inst__balance { text-align: right; }
+.inst .badge { align-self: center; }
+.inst--off .inst-logo { opacity: 0.45; }
+.inst--off .inst__value { color: var(--cor-mu); }
 .inst__value { font: var(--font-14-regular); font-weight: 700; }
 
 
@@ -115,19 +115,6 @@
     white-space: nowrap;
   }
 
-  .profile__email { display: block; }
-
-
-  .logout {
-    display: flex;
-    position: fixed;
-    top: var(--esp-8);
-    right: var(--esp-8);
-    z-index: 6;
-    height: 36px;
-    margin: 0;
-    padding: 0 var(--esp-8);
-  }
 
   .main {
     gap: var(--esp-16);
@@ -146,11 +133,8 @@
   .card__total { margin-top: var(--esp-4); }
 
  
-  .card--chart {
-    flex-wrap: nowrap;
-    gap: 18px;
-    padding: var(--esp-16) var(--esp-16) var(--esp-16) 14px;
-  }
+  .card--chart { padding: var(--esp-16) var(--esp-16) var(--esp-16) 14px; }
+  .card__corpo { flex-wrap: nowrap; gap: 18px; }
 
   .legend { gap: var(--esp-12); }
 
@@ -185,3 +169,12 @@
 
   .inst .inst-logo { width: 40px; height: 40px; }
 }
+
+/* Mercado hoje (API pública) */
+.card--mercado { padding: var(--esp-16) var(--esp-24); }
+.mercado__title { margin-bottom: var(--esp-12); font: var(--font-16-extrabold); }
+.mercado { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--esp-24) 48px; }
+.mercado__rotulo { font: var(--font-12-regular); color: var(--cor-mu); }
+.mercado__valor { font: var(--font-22-extrabold); }
+.mercado__data { font: var(--font-12-regular); font-size: 11px; color: var(--cor-mu); }
+.mercado__msg { font: var(--font-12-regular); color: var(--cor-mu); }

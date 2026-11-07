@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/extrato.css">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
@@ -34,8 +36,6 @@
           <li><a href="fluxo.html" class="menu__link">Fluxo</a></li>
         </ul>
       </nav>
-
-      <button type="button" class="logout" id="btn-sair">Sair</button>
     </aside>
 
    
@@ -58,11 +58,20 @@
           <h1 class="topbar__title">Extrato</h1>
         </div>
 
-        <div class="profile">
-          <span class="profile__avatar" aria-hidden="true">AS</span>
-          <div class="profile__info">
-            <span class="profile__name">Ana Souza</span>
-            <span class="profile__email">ana@email.com</span>
+        <div class="topbar__right">
+          <button type="button" class="tema-btn js-tema" aria-pressed="false">Modo escuro</button>
+          <div class="profile-wrap">
+            <button type="button" class="profile" id="btn-perfil" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-perfil">
+              <span class="profile__avatar" aria-hidden="true">AS</span>
+              <span class="profile__info">
+                <span class="profile__name">Ana Souza</span>
+                <span class="profile__email">ana@email.com</span>
+              </span>
+            </button>
+            <ul class="profile-menu" id="menu-perfil" role="menu" hidden>
+              <li role="none"><button type="button" role="menuitem" class="profile-menu__item" id="btn-cadastro">Meu cadastro</button></li>
+              <li role="none"><button type="button" role="menuitem" class="profile-menu__item profile-menu__item--sair" id="btn-sair">Sair</button></li>
+            </ul>
           </div>
         </div>
       </header>
@@ -77,15 +86,11 @@
           <label class="sr-only" for="instituicao">Instituição</label>
           <select class="filtros__campo" id="instituicao">
             <option value="">Instituição</option>
-            <option>Nubank</option>
-            <option>Inter</option>
           </select>
 
           <label class="sr-only" for="categoria">Categoria</label>
           <select class="filtros__campo" id="categoria">
             <option value="">Categoria</option>
-            <option>Alimentação</option>
-            <option>Receita</option>
           </select>
 
           <label class="sr-only" for="de">Período inicial (mês e ano)</label>
@@ -97,6 +102,8 @@
         
         <p class="aviso-erro" id="erro-datas" role="alert" hidden></p>
 
+        <p class="dica-busca" id="dica-busca" hidden></p>
+
         
         <section class="aplicados" id="aplicados" aria-label="Filtros aplicados" hidden>
           <div>
@@ -107,6 +114,16 @@
         </section>
 
         
+        <section class="card xtr-grafico" aria-labelledby="xtr-titulo">
+          <h2 class="xtr-grafico__title" id="xtr-titulo">Gastos por categoria (R$)</h2>
+          <div class="xtr-grafico__area" id="xtr-area">
+            <canvas id="grafico-barras" role="img" aria-label="Gráfico de barras dos gastos por categoria"></canvas>
+          </div>
+          <p class="xtr-grafico__vazio" id="xtr-vazio" hidden>Sem gastos no período e nos filtros escolhidos.</p>
+          <p class="xtr-grafico__nota">Acompanha os filtros. Investimentos e poupança não entram em gastos.</p>
+          <table class="sr-only" id="xtr-tabela-acess"></table>
+        </section>
+
         <section class="tx" aria-label="Transações">
           <div class="tx__scroll" id="tx-tabela">
             <table class="tx__table">
@@ -136,6 +153,9 @@
     </div>
   </div>
 
+  <script src="js/vendor/chart.umd.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/estado.js"></script>
   <script src="js/layout.js"></script>
   <script src="js/extrato.js"></script>
 </body>

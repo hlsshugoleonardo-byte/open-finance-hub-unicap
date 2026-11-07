@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/fluxo.css">
+  <script src="js/tema.js"></script>
 </head>
 <body class="pg-fluxo">
 
@@ -34,8 +36,6 @@
           <li><a href="fluxo.html" class="menu__link is-active" aria-current="page">Fluxo</a></li>
         </ul>
       </nav>
-
-      <button type="button" class="logout" id="btn-sair">Sair</button>
     </aside>
 
     
@@ -58,11 +58,20 @@
           <h1 class="topbar__title">Fluxo<span class="topbar__extra"> de caixa</span></h1>
         </div>
 
-        <div class="profile">
-          <span class="profile__avatar" aria-hidden="true">AS</span>
-          <div class="profile__info">
-            <span class="profile__name">Ana Souza</span>
-            <span class="profile__email">ana@email.com</span>
+        <div class="topbar__right">
+          <button type="button" class="tema-btn js-tema" aria-pressed="false">Modo escuro</button>
+          <div class="profile-wrap">
+            <button type="button" class="profile" id="btn-perfil" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-perfil">
+              <span class="profile__avatar" aria-hidden="true">AS</span>
+              <span class="profile__info">
+                <span class="profile__name">Ana Souza</span>
+                <span class="profile__email">ana@email.com</span>
+              </span>
+            </button>
+            <ul class="profile-menu" id="menu-perfil" role="menu" hidden>
+              <li role="none"><button type="button" role="menuitem" class="profile-menu__item" id="btn-cadastro">Meu cadastro</button></li>
+              <li role="none"><button type="button" role="menuitem" class="profile-menu__item profile-menu__item--sair" id="btn-sair">Sair</button></li>
+            </ul>
           </div>
         </div>
       </header>
@@ -71,29 +80,96 @@
 
         <div class="flx">
 
-          
           <section class="flx-card flx-resumo" aria-labelledby="flx-rotulo">
-            <p class="flx-card__label" id="flx-rotulo">Saldo projetado em <span id="flx-mes">Mar/2027</span></p>
-            <p class="flx-card__total" id="flx-saldo">R$ 22.350,00</p>
-            <div class="flx-chart-wrap">
-              <svg class="flx-chart" id="flx-chart" viewBox="0 0 520 200" role="img" aria-label="Gráfico de linha da evolução do saldo projetado"></svg>
+            <div class="flx-topo">
+              <div>
+                <p class="flx-card__label" id="flx-rotulo">Saldo projetado em <span id="flx-mes">Ago/2027</span></p>
+                <p class="flx-card__total" id="flx-saldo">R$ 0,00</p>
+              </div>
+              <div class="flx-horizonte" role="group" aria-label="Período da projeção">
+                <button type="button" class="flx-chip" data-meses="3" aria-pressed="false">3 meses</button>
+                <button type="button" class="flx-chip" data-meses="6" aria-pressed="false">6 meses</button>
+                <button type="button" class="flx-chip" data-meses="12" aria-pressed="true">12 meses</button>
+              </div>
             </div>
-            
+            <h2 class="flx-grafico__title" id="flx-grafico-titulo">Evolução do saldo projetado (R$)</h2>
+            <div class="flx-chart-wrap">
+              <canvas id="grafico-linha" role="img" aria-labelledby="flx-grafico-titulo" aria-label="Gráfico de linha da evolução do saldo projetado"></canvas>
+            </div>
+            <p class="flx-aviso" id="flx-aviso" hidden></p>
             <table class="sr-only" id="flx-tabela"></table>
           </section>
 
-          
-          <section class="flx-card flx-rec" aria-labelledby="flx-rec-titulo">
-            <h2 class="flx-rec__title" id="flx-rec-titulo">Recorrentes considerados</h2>
-            <ul id="flx-rec-lista"></ul>
-          </section>
+          <div class="flx-lateral">
+            <section class="flx-card flx-rec" aria-labelledby="flx-rec-titulo">
+              <h2 class="flx-rec__title" id="flx-rec-titulo">Recorrentes considerados</h2>
+              <ul id="flx-rec-lista"></ul>
+            </section>
+
+            <section class="flx-card flx-metas" aria-labelledby="metas-titulo">
+              <h2 class="flx-rec__title" id="metas-titulo">Metas</h2>
+              <form id="form-meta" novalidate>
+                <label class="campo__rotulo" for="meta-nome">Nome</label>
+                <input class="campo" type="text" id="meta-nome" placeholder="Nome da meta" autocomplete="off">
+
+                <label class="campo__rotulo" for="meta-valor">Valor (R$)</label>
+                <input class="campo" type="text" id="meta-valor" inputmode="decimal" placeholder="Valor" autocomplete="off">
+
+                <label class="campo__rotulo" for="meta-mes">Mês</label>
+                <input class="campo" type="month" id="meta-mes" placeholder="AAAA-MM" min="2026-09" autocomplete="off">
+
+                <p class="aviso-erro" id="meta-erro" role="alert" hidden></p>
+                <button type="submit" class="flx-botao" id="meta-enviar">Adicionar meta</button>
+              </form>
+              <p class="metas-status" id="metas-status" role="status" hidden></p>
+
+              <ul class="metas-lista" id="metas-lista" aria-live="polite"></ul>
+            </section>
+          </div>
 
         </div>
       </main>
     </div>
   </div>
 
+  <!-- Modal: editar meta -->
+  <div class="modal hidden" id="modal-editar">
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="editar-titulo">
+      <h2 class="modal__title" id="editar-titulo">Editar meta</h2>
+      <form id="form-editar" novalidate>
+        <label class="campo__rotulo" for="editar-nome">Nome</label>
+        <input class="campo" type="text" id="editar-nome" autocomplete="off">
+        <label class="campo__rotulo" for="editar-valor">Valor (R$)</label>
+        <input class="campo" type="text" id="editar-valor" inputmode="decimal" autocomplete="off">
+        <label class="campo__rotulo" for="editar-mes">Mês</label>
+        <input class="campo" type="month" id="editar-mes" placeholder="AAAA-MM" min="2026-09" autocomplete="off">
+        <p class="aviso-erro" id="editar-erro" role="alert" hidden></p>
+        <div class="modal__actions">
+          <button type="button" class="modal__btn modal__btn--outline" id="editar-cancelar">Cancelar</button>
+          <button type="submit" class="modal__btn modal__btn--solid" id="editar-salvar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: confirmar exclusão -->
+  <div class="modal hidden" id="modal-excluir">
+    <div class="modal__box modal__box--alerta" role="dialog" aria-modal="true" aria-labelledby="excluir-titulo" aria-describedby="excluir-texto">
+      <h2 class="modal__title" id="excluir-titulo">Excluir meta?</h2>
+      <p class="modal__text" id="excluir-texto">Esta ação não pode ser desfeita.</p>
+      <div class="modal__actions">
+        <button type="button" class="modal__btn modal__btn--outline" id="excluir-cancelar">Cancelar</button>
+        <button type="button" class="modal__btn modal__btn--danger" id="excluir-confirmar">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vendor/chart.umd.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/estado.js"></script>
   <script src="js/layout.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/back4app.js"></script>
   <script src="js/fluxo.js"></script>
 </body>
 </html>

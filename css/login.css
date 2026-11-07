@@ -18,7 +18,7 @@
   justify-content: center;
   gap: var(--esp-16);
   padding: var(--esp-24) 64px;
-  background: var(--cor-pri);
+  background: var(--cor-brand);
   color: var(--cor-on);
 }
 
@@ -144,7 +144,7 @@
 }
 
 .check__input:checked {
-  background: var(--cor-pri)
+  background: var(--cor-btn)
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
     center / 12px no-repeat;
   border-color: var(--cor-pri);
@@ -162,7 +162,7 @@
   font: var(--font-14-regular);
   font-weight: 700;
   color: var(--cor-on);
-  background: var(--cor-pri);
+  background: var(--cor-btn);
   border: 0;
   border-radius: var(--raio-10);
   cursor: pointer;

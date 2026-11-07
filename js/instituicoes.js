@@ -4,7 +4,7 @@ const lista = document.getElementById('lista-instituicoes');
 const aviso = document.getElementById('aviso-status');
 
 
-function atualizarCard(card, conectado) {
+function atualizarCard(card, conectado, anunciar = true) {
   const nome  = card.dataset.nome;
   const badge = card.querySelector('.badge');
   const desc  = card.querySelector('.conn__desc');
@@ -31,9 +31,12 @@ function atualizarCard(card, conectado) {
   botao.setAttribute('aria-label', `${botao.textContent} ${nome}`);
 
   
-  aviso.textContent = conectado
-    ? `${nome} conectado. Dados compartilhados.`
-    : `Acesso do ${nome} revogado. Sem compartilhamento.`;
+  if (anunciar) {
+    OFH.definirConexao(nome, conectado);
+    aviso.textContent = conectado
+      ? `${nome} conectado. Dados compartilhados.`
+      : `Acesso do ${nome} revogado. Sem compartilhamento.`;
+  }
 }
 
 
@@ -171,7 +174,7 @@ document.addEventListener('keydown', (evento) => {
 });
 
 
+/* Estado inicial vem das conexões salvas (Início, Extrato e Fluxo leem as mesmas) */
 document.querySelectorAll('.conn').forEach((card) => {
-  const botao = card.querySelector('.conn__btn');
-  botao.setAttribute('aria-label', `${botao.textContent} ${card.dataset.nome}`);
+  atualizarCard(card, OFH.conectada(card.dataset.nome), false);
 });

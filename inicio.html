@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/modal.css">
   <link rel="stylesheet" href="css/inicio.css">
+  <script src="js/tema.js"></script>
 </head>
 <body>
 
@@ -34,8 +36,6 @@
           <li><a href="fluxo.html" class="menu__link">Fluxo</a></li>
         </ul>
       </nav>
-
-      <button type="button" class="logout" id="btn-sair">Sair</button>
     </aside>
 
    
@@ -59,108 +59,67 @@
           <h1 class="topbar__title" id="titulo-tela">Início</h1>
         </div>
 
-        <div class="profile">
-          <span class="profile__avatar" aria-hidden="true">AS</span>
-          <div class="profile__info">
-            <span class="profile__name">Ana Souza</span>
-            <span class="profile__email">ana@email.com</span>
+        <div class="topbar__right">
+          <button type="button" class="tema-btn js-tema" aria-pressed="false">Modo escuro</button>
+          <div class="profile-wrap">
+            <button type="button" class="profile" id="btn-perfil" aria-haspopup="menu" aria-expanded="false" aria-controls="menu-perfil">
+              <span class="profile__avatar" aria-hidden="true">AS</span>
+              <span class="profile__info">
+                <span class="profile__name">Ana Souza</span>
+                <span class="profile__email">ana@email.com</span>
+              </span>
+            </button>
+            <ul class="profile-menu" id="menu-perfil" role="menu" hidden>
+              <li role="none"><button type="button" role="menuitem" class="profile-menu__item" id="btn-cadastro">Meu cadastro</button></li>
+              <li role="none"><button type="button" role="menuitem" class="profile-menu__item profile-menu__item--sair" id="btn-sair">Sair</button></li>
+            </ul>
           </div>
         </div>
       </header>
 
       <main class="main" id="conteudo">
 
-       
         <div class="summary">
           <section class="card card--total" aria-labelledby="total-label">
             <h2 class="card__label" id="total-label">Patrimônio total</h2>
-            <p class="card__total">R$ 48.320,75</p>
+            <p class="card__total" id="total">R$ 0,00</p>
+            <p class="card__note" id="total-nota"></p>
           </section>
 
           <section class="card card--chart" aria-labelledby="chart-label">
-            <h2 class="sr-only" id="chart-label">Composição do patrimônio</h2>
+            <h2 class="card__titulo" id="chart-label">Composição do patrimônio (R$)</h2>
 
-         
-            <div
-              class="donut"
-              role="img"
-              aria-label="Gráfico de rosca: investimentos 71%, contas 23%, crédito 6%">
+            <div class="card__corpo">
+              <div class="donut-wrap" id="donut-wrap">
+                <canvas id="grafico-rosca" role="img" aria-label="Gráfico de rosca da composição do patrimônio"></canvas>
+              </div>
+              <p class="donut-vazio" id="donut-vazio" hidden>Conecte uma instituição para ver a composição.</p>
+
+              <ul class="legend" id="legenda"></ul>
             </div>
-
-         
-            <ul class="legend">
-              <li class="legend__item">
-                <span class="legend__dot legend__dot--pri" aria-hidden="true"></span>
-                <span class="legend__name">Investimentos</span>
-                <span class="legend__value">R$ 38.900,00</span>
-              </li>
-              <li class="legend__item">
-                <span class="legend__dot legend__dot--ok" aria-hidden="true"></span>
-                <span class="legend__name">Contas</span>
-                <span class="legend__value">R$ 12.450,30</span>
-              </li>
-              <li class="legend__item">
-                <span class="legend__dot legend__dot--bad" aria-hidden="true"></span>
-                <span class="legend__name">Crédito (fatura)</span>
-                <span class="legend__value">−R$ 3.029,55</span>
-              </li>
-            </ul>
           </section>
         </div>
 
-      
         <section aria-labelledby="inst-titulo">
           <h2 class="section-title" id="inst-titulo">Por instituição</h2>
+          <ul class="inst-list" id="inst-lista"></ul>
+        </section>
 
-          <ul class="inst-list">
-            <li>
-              <article class="inst">
-                <span class="inst-logo inst-logo--nu" aria-hidden="true">Nu</span>
-                <div class="inst__info">
-                  <h3 class="inst__name">Nubank</h3>
-                  <p class="inst__desc">Conta + cartão</p>
-                </div>
-                <div class="inst__balance">
-                  <p class="inst__value">R$ 7.120,30</p>
-                  <p class="inst__desc">Conta</p>
-                </div>
-              </article>
-            </li>
-
-            <li>
-              <article class="inst">
-                <span class="inst-logo inst-logo--in" aria-hidden="true">In</span>
-                <div class="inst__info">
-                  <h3 class="inst__name">Inter</h3>
-                  <p class="inst__desc">Investimentos</p>
-                </div>
-                <div class="inst__balance">
-                  <p class="inst__value">R$ 28.900,00</p>
-                  <p class="inst__desc">Investimento</p>
-                </div>
-              </article>
-            </li>
-
-            <li>
-              <article class="inst">
-                <span class="inst-logo inst-logo--it" aria-hidden="true">It</span>
-                <div class="inst__info">
-                  <h3 class="inst__name">Itaú</h3>
-                  <p class="inst__desc">Fatura do cartão</p>
-                </div>
-                <div class="inst__balance">
-                  <p class="inst__value">−R$ 3.029,55</p>
-                  <p class="inst__desc">Crédito</p>
-                </div>
-              </article>
-            </li>
-          </ul>
+        <section class="card card--mercado" aria-labelledby="mercado-titulo">
+          <h2 class="mercado__title" id="mercado-titulo">Mercado hoje</h2>
+          <div class="mercado" id="mercado" aria-live="polite">
+            <p class="mercado__msg">Carregando indicadores…</p>
+          </div>
         </section>
 
       </main>
     </div>
   </div>
 
+  <script src="js/vendor/chart.umd.js"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/estado.js"></script>
   <script src="js/layout.js"></script>
+  <script src="js/inicio.js"></script>
 </body>
 </html>

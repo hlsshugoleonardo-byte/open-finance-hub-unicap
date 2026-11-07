@@ -15,3 +15,70 @@
 .inst-logo--nu { background: rgba(130, 10, 209, 1); }
 .inst-logo--in { background: rgba(236, 108, 0, 1); }
 .inst-logo--it { background: rgba(10, 61, 145, 1); }
+
+
+.badge {
+  flex: none;
+  padding: 2px 9px;
+  font: var(--font-12-semibold);
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+
+.badge--on {
+  color: var(--cor-ok);
+  background: var(--cor-okbg);
+}
+
+
+.badge--off {
+  color: var(--cor-tx);
+  background: var(--cor-bg);
+}
+
+/* Cartão genérico (usado no Extrato; Início e Fluxo ajustam o espaçamento) */
+.card {
+  background: var(--cor-sf);
+  border: 1px solid var(--cor-ln);
+  border-radius: var(--raio-14);
+}
+
+/* ===== Animação dos cards ao passar o mouse ===== */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card, .flx-card, .conn,
+  .card--mercado, .xtr-grafico {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover, .flx-card:hover, .conn:hover {
+    transform: translateY(-3px);
+    border-color: var(--cor-pri);
+    box-shadow: 0 10px 24px rgba(15, 27, 45, 0.12);
+  }
+  :root[data-tema="dark"] .card:hover,
+  :root[data-tema="dark"] .flx-card:hover,
+  :root[data-tema="dark"] .conn:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Cards por instituição (Início): só têm moldura no layout de desktop */
+  @media (min-width: 901px) {
+    .inst { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+    .inst:hover {
+      transform: translateY(-3px);
+      border-color: var(--cor-pri);
+      box-shadow: 0 10px 24px rgba(15, 27, 45, 0.12);
+    }
+    :root[data-tema="dark"] .inst:hover { box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45); }
+  }
+
+  /* No celular o resumo do Fluxo e o total do Início não têm moldura: sem animação */
+  @media (max-width: 900px) {
+    .flx-resumo:hover, .card--total:hover {
+      transform: none;
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+}

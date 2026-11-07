@@ -215,3 +215,21 @@ select.filtros__campo { cursor: pointer; }
     border-top: 2px solid var(--cor-pri);
   }
 }
+
+
+/* Gráfico de barras e dica da busca */
+.dica-busca { font: var(--font-12-regular); color: var(--cor-mu); }
+.dica-busca[hidden] { display: none; }
+
+.xtr-grafico { padding: var(--esp-16) var(--esp-24) var(--esp-16) 20px; }
+.xtr-grafico__title { margin-bottom: var(--esp-8); font: var(--font-16-extrabold); }
+.xtr-grafico__area { position: relative; height: 260px; }
+.xtr-grafico__area[hidden] { display: none; }
+.xtr-grafico__vazio { padding: var(--esp-24) 0; font: var(--font-12-regular); color: var(--cor-mu); text-align: center; }
+.xtr-grafico__vazio[hidden] { display: none; }
+.xtr-grafico__nota { margin-top: var(--esp-8); font: var(--font-12-regular); color: var(--cor-mu); }
+
+@media (max-width: 900px) {
+  .xtr-grafico { padding: var(--esp-12); }
+  .xtr-grafico__area { height: 260px; }
+}

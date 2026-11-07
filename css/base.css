@@ -68,3 +68,52 @@ button:focus-visible {
   outline-offset: 2px;
   border-radius: var(--raio-10);
 }
+
+
+/* ===== Tokens extras (tema claro) ===== */
+:root {
+  --cor-btn:      rgba(30, 58, 138, 1);   /* fundo de botões sólidos e avatar */
+  --cor-brand:    rgba(30, 58, 138, 1);   /* painel de marca do login */
+  --cor-bad-btn:  rgba(198, 40, 40, 1);   /* fundo do botão perigoso */
+  --cor-sombra:   rgba(15, 27, 45, 0.12);
+  color-scheme: light;
+}
+
+/* ===== Tema escuro (alternado pelo botão "Modo escuro", salvo em localStorage) ===== */
+:root[data-tema="dark"] {
+  --cor-pri:     #9fb2ff;
+  --cor-pri2:    #1a2a52;
+  --cor-on:      #ffffff;
+  --cor-ok:      #3ddc97;
+  --cor-okbg:    #0f2e2a;
+  --cor-bad:     #ff7b7b;
+  --cor-badbg:   #3a1a22;
+  --cor-wn:      #f5b84b;
+  --cor-wnbg:    #3a2c10;
+  --cor-bg:      #0d1728;
+  --cor-sf:      #101b2e;
+  --cor-tx:      #e8edf7;
+  --cor-mu:      #8b99b3;
+  --cor-ln:      #1f2d46;
+  --cor-btn:     #3b5bdb;
+  --cor-brand:   #1b2f6e;
+  --cor-bad-btn: #c62828;
+  --cor-sombra:  rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+/* Botão de alternar tema */
+.tema-btn {
+  height: 40px;
+  padding: 0 var(--esp-16);
+  font: var(--font-12-semibold);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cor-pri);
+  background: transparent;
+  border: 1px solid var(--cor-pri);
+  border-radius: var(--raio-10);
+  white-space: nowrap;
+}
+.tema-btn:hover { background: var(--cor-pri2); }
+.tema-btn--fixo { position: fixed; top: var(--esp-16); right: var(--esp-24); z-index: 30; }
